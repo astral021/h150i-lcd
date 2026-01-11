@@ -99,7 +99,7 @@ static bool send_image(hid_device* device, const std::vector<uint8_t>& image, bo
         int res = hid_write(device, reinterpret_cast<const unsigned char*>(imgdata.data()), static_cast<size_t>(imgdata.size()));
 		retval = (res >= 0);
 
-        if(signature == 0x01 && fix) {  //unfuck should be here as well
+        if(signature == 0x01 && fix) {
             uint16_t chunk_length = static_cast<uint16_t>(length);
             uint16_t chunk_transmitted_temp = static_cast<uint8_t>((chunk_length >> 8) & 0xff);
 			uint16_t chunk_remaining_temp = static_cast<uint8_t>(chunk_length & 0xff);
@@ -116,7 +116,7 @@ static bool send_image(hid_device* device, const std::vector<uint8_t>& image, bo
 
             (void)hid_send_feature_report(device, reinterpret_cast<const unsigned char*>(fix_packet.data()), fix_packet.size());
 
-            std::cout << "unfuck condition met";
+            std::cout << "fix condition met";
 		}
         packets_sent++;
     }
@@ -240,7 +240,3 @@ int main(int argc, char** argv) {
 }
 
 //#endif
-
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
