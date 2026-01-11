@@ -1,3 +1,6 @@
 /.vs
 /ConsoleA.*
 /x64
+*.vcxproj
+*.vcxproj.*
+*.sln
